@@ -33,7 +33,7 @@ defmodule MetricBroadcasterWeb.MetricFetcher do
 
   defp fetch_metrics do
     # Perform an HTTP GET request to fetch metrics from a service running on port 8080
-    url = "http://metrics-generator:8080/metrics?limit=1"
+    url = "http://metric-generator:8080/metrics?limit=1"
     IO.puts(("Fetching metrics from #{url}..."))
     response = HTTPoison.get!(url)
     case response.status_code do
