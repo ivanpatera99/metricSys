@@ -1,0 +1,22 @@
+version: '3'
+services:
+  metric-broadcaster:
+    image: metric-broadcaster
+    networks:
+      - metrics-network
+    ports:
+      - 4000:4000
+    depends_on:
+      - metric-generator
+    restart: unless-stopped
+
+  metric-generator:
+    image: metric-generator
+    networks:
+      - metrics-network
+    ports:
+      - 8080:8080
+
+networks:
+  metrics-network:
+    driver: bridge

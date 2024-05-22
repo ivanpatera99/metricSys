@@ -11,8 +11,8 @@ defmodule MetricBroadcasterWeb.MetricFetcher do
   end
 
   def handle_info(:work, state) do
-    # metrics = fetch_metrics()
-    metrics = fetch_not_fetch()
+    metrics = fetch_metrics()
+    # metrics = fetch_not_fetch()
     IO.puts("Broadcasting metrics: #{inspect(metrics)}")
     MetricBroadcasterWeb.Endpoint.broadcast("metric:lobby", "metrics_data", %{metrics: metrics})
     schedule_work()  # Reschedule the work
