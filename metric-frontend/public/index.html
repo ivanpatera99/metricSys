@@ -31,6 +31,9 @@
         <p id="disk">diskio: []</p>
     </div>
 
-    <script src="main.js"></script>
+    <script type="module">
+        const setupMetricsChannel = require('./main.js');
+        window.onload = setupMetricsChannel;
+    </script>
 </body>
 </html>
