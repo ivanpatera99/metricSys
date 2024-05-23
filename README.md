@@ -40,4 +40,5 @@ This is an MVP and as it, it's built arround some considerations:
 
 2. To update the numbers of servers to track there are a few steps to it. `metric-generator` should have a new endpoint that retreives the available `serverIds` so that the elixir app can spawn one worker for each one of those servers and make the consultation for the latest metrics to post to the channel. Lastly the frontend should be updated to iterate over the metrics instead of accessing the first one.
 
+3. The golang app ships with a built in sqlite database, if you want to persist data you should attach a volume. The table `metrics` is created with the file /metric-generator/sql/create_tables.sql
    
