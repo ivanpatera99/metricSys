@@ -26,8 +26,8 @@ services:
     depends_on:
       - metric-broadcaster
 
-  metric-reverse-proxy:
-    image: metric-reverse-proxy
+  metric-proxy:
+    image: metric-proxy
     networks:
       - metrics-network
     ports:
