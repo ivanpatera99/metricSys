@@ -1,0 +1,36 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>metrics</title>
+    <script src="https://cdn.jsdelivr.net/npm/phoenix@1.7.12/priv/static/phoenix.min.js"></script> 
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+
+        h1, p {
+            margin: 0;
+            padding: 10px 0;
+        }
+
+        #metrics {
+            margin-top: 20px;
+        }
+    </style>
+    
+</head>
+<body>
+    <h1>Live metrics</h1>
+    <p>This project implements sockets to perform realtime data update on this very simple dashboard</p>
+    <div id="metrics">
+        <p id="cpu">CPU: []</p>
+        <p id="mem">Memory: []</p>
+        <p id="disk">diskio: []</p>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,5 +1,7 @@
 let socket = new Phoenix.Socket("ws://localhost:80/socket", {})
 
+const [cpu, mem, disk] = [document.getElementById('cpu'), document.getElementById('mem'), document.getElementById('disk')]
+
 socket.connect()
 
 // Join a channel
@@ -7,7 +9,11 @@ let channel = socket.channel("metric:lobby", {})
 
 // Log messages from the channel
 channel.on("metrics_data", payload => {
-  console.log("Received message:", payload)
+  
+  metric = payload.metrics[0]
+  cpu.innerHTML = `CPU: ${metric.cpu_usage}`
+  mem.innerHTML = `Memory: ${metric.memory_usage}`
+  disk.innerHTML = `Disk: ${metric.disk_usage}`
 })
 
 // Handle successful join

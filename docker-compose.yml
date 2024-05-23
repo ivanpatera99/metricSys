@@ -17,8 +17,8 @@ services:
     ports:
       - 8080:8080
 
-  frontend:
-    image: frontend
+  metric-frontend:
+    image: metric-frontend
     networks:
       - metrics-network
     ports:
@@ -26,14 +26,14 @@ services:
     depends_on:
       - metric-broadcaster
 
-  reverse-proxy:
-    image: reverse-proxy
+  metric-reverse-proxy:
+    image: metric-reverse-proxy
     networks:
       - metrics-network
     ports:
       - 80:80
     depends_on:
-      - frontend
+      - metric-frontend
     restart: unless-stopped
 
 networks:
