@@ -3,7 +3,7 @@ const setupMetricsChannel = () => {
   socket.connect();
 
   let channel = socket.channel("metric:lobby", {});
-  
+
   const [cpu, mem, disk] = [
     document.getElementById('cpu'),
     document.getElementById('mem'),
@@ -24,6 +24,10 @@ const setupMetricsChannel = () => {
   socket.onError(() => console.log("There was an error with the connection!"));
   socket.onClose(() => console.log("The connection dropped"));
 };
+
+if (typeof window !== 'undefined') {
+  window.onload = setupMetricsChannel;
+}
 
 // Export the function for testing purposes
 module.exports = setupMetricsChannel;
