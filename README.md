@@ -15,22 +15,16 @@ The nginx server is used here to have a common ingress to distribute our traffic
 
 ## Run the app
 
-This app uses Docker to build and orchestrate this services. With Docker installed on your computer build each image with its correspondent tag, the tag should be the same as the directory you are in: 
+This app uses Docker to build and orchestrate this services. The boot.sh file has all the instructions. Give it executable access and run it:
 
-example:
 ```
-> cd metric-broadcaster
-> docker build -t metric-broadcaster .
-```
-alternatively if you dont want to navigate directories, pass the dockerfile path with the -f and use its directory as reference:
-```
-> docker build -t metric-broadcaster -f ./metric-broadcaster/Dockerfile ./metric-broadcaster
+> chmod +x ./boot.sh
+> ./boot.sh
 ```
 
-After building all docker images you can execute
-```
-docker-compose up
-```
+Feel free to explore what boot.sh does or copy and paste its commands to run the app.
+
+Once booted go to localhost on your computer and you should receive a simple html file with the live metrics being updated each second
 
 ## Considerations
 
@@ -41,4 +35,8 @@ This is an MVP and as it, it's built arround some considerations:
 2. To update the numbers of servers to track there are a few steps to it. `metric-generator` should have a new endpoint that retreives the available `serverIds` so that the elixir app can spawn one worker for each one of those servers and make the consultation for the latest metrics to post to the channel. Lastly the frontend should be updated to iterate over the metrics instead of accessing the first one.
 
 3. The golang app ships with a built in sqlite database, if you want to persist data you should attach a volume. The table `metrics` is created with the file /metric-generator/sql/create_tables.sql
+
+## Requirements
+
+This app will use ports 80(nginx), 3000(javascript server), 4000(phoenix) and 8080(golang)
    
