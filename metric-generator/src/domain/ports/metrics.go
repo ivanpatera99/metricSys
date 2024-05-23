@@ -1,6 +1,6 @@
 package ports
 
-import "github.com/ivanpatera99/metrics-example-app/src/domain/entities"
+import "github.com/ivanpatera99/metrics-app/src/domain/entities"
 
 type MetricsRepo interface {
 	PostNewMetric(metrics []entities.ServerMetric) error

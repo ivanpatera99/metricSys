@@ -2,18 +2,16 @@ package rest
 
 import (
 	"strconv"
+
 	"github.com/gin-gonic/gin"
-	metricsMockService "github.com/ivanpatera99/metrics-example-app/src/adapters/metrics/mock"
-	sqlAdapter "github.com/ivanpatera99/metrics-example-app/src/adapters/sql"
-	"github.com/ivanpatera99/metrics-example-app/src/domain/usecases"
+	"github.com/ivanpatera99/metrics-app/src/domain/ports"
+	"github.com/ivanpatera99/metrics-app/src/domain/usecases"
 )
 
-func App() {
-	metricsSqlAdapter := sqlAdapter.NewMetricsSqlAdapter()
-	metricsMockService := metricsMockService.MetricsMockService{}
+func App(metricsRepo ports.MetricsRepo, metricsService ports.MetricsService) *gin.Engine {
 	metricsUseCase := usecases.MetricsUseCase{
-		MetricsRepo:          metricsSqlAdapter,
-		ServerMetricsProvider: &metricsMockService,
+		MetricsRepo:           metricsRepo,
+		ServerMetricsProvider: metricsService,
 	}
 
 	r := gin.Default()
@@ -36,11 +34,8 @@ func App() {
 		// Use the "limit" value in your use case logic
 	})
 
-
 	// boot up go routine for generating metrics
 	go metricsUseCase.GenerateMetrics()
 
-	// boot up the gin server
-	r.Run(":8080")
+	return r
 }
-

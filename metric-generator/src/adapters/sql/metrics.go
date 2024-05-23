@@ -1,9 +1,10 @@
 package sql
 
 import (
-	"log"
 	"database/sql"
-	"github.com/ivanpatera99/metrics-example-app/src/domain/entities"
+	"log"
+
+	"github.com/ivanpatera99/metrics-app/src/domain/entities"
 	_ "github.com/mattn/go-sqlite3"
 )
 

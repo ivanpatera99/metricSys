@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ivanpatera99/metrics-example-app/src/domain/entities"
-	"github.com/ivanpatera99/metrics-example-app/src/domain/ports"
+	"github.com/ivanpatera99/metrics-app/src/domain/entities"
+	"github.com/ivanpatera99/metrics-app/src/domain/ports"
 )
 
 type MetricsUseCase struct {
